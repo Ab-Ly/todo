@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 import Form from "./components/Form";
-import Todo from "./components/Todo";
 import TodoList from "./components/TodoList";
 
 function App() {
@@ -12,9 +11,16 @@ function App() {
   const [status, setStatus] = useState("all");
   const [filteredTodos, setFilteredTodos] = useState([]);
 
+  //RUN Once when app start
+
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
+
   //Effect // useEffect
   useEffect(() => {
     filterHandler();
+    saveLocalTodos();
   }, [todos, status]);
 
   //Function & Events
@@ -35,10 +41,14 @@ function App() {
 
   // Save to Local
   const saveLocalTodos = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+  const getLocalTodos = () => {
     if (localStorage.getItem("todos") === null) {
       localStorage.setItem("todos", JSON.stringify([]));
     } else {
-      localStorage.setItem("todos", JSON.stringify(todos));
+      let todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal);
     }
   };
 
@@ -49,9 +59,10 @@ function App() {
       </header>
       <Form
         inputText={inputText}
+        setInputText={setInputText}
         todos={todos}
         setTodos={setTodos}
-        setInputText={setInputText}
+        status={status}
         setStatus={setStatus}
       />
       <TodoList

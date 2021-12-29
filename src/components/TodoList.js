@@ -8,7 +8,7 @@ const TodoList = ({ todos, setTodos, filteredTodos }) => {
       <ul className="todo-list">
         {filteredTodos.map((todo) => (
           <Todo
-            setTodos={setTodos}
+            setTodos={setTodos} // PASSING PROPS
             todos={todos}
             key={todo.id}
             todo={todo}

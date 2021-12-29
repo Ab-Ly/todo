@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
+// import CSS
 import "./App.css";
+
+// import components
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 
@@ -57,7 +60,7 @@ function App() {
       <header>
         <h1>Daily Todo List</h1>
       </header>
-      <Form
+      <Form // CALLING PROPS
         inputText={inputText}
         setInputText={setInputText}
         todos={todos}

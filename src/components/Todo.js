@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Todo = ({ text, todo, todos, setTodos }) => {
   //Adding event (e)
@@ -23,12 +24,22 @@ const Todo = ({ text, todo, todos, setTodos }) => {
       <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
         {text}
       </li>
-      <button onClick={completHandler} className="complete-btn">
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={completHandler}
+        className="complete-btn"
+      >
         <i className="fas fa-check"></i>
-      </button>
-      <button onClick={deleteHandler} className="trash-btn">
+      </motion.button>
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={deleteHandler}
+        className="trash-btn"
+      >
         <i className="fas fa-trash"></i>
-      </button>
+      </motion.button>
     </div>
   );
 };

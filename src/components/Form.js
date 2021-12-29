@@ -1,21 +1,22 @@
 import React from "react";
-
+import { motion } from "framer-motion";
+// props
 const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
   const submitTodoHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // PREVENT REFRESH : "ACTUALISÉ"
     setTodos([
       ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
+      { text: inputText, completed: false, id: Math.random() * 1000 }, // *1000 TO GET UNIQUE NUMBER
     ]);
     setInputText("");
   };
   const statusHandler = (e) => {
     setStatus(e.target.value);
   };
-
+  ////// AVEC LA FONCTION EN HAUT NON REFRESH // SUBMIT HANDLER
   return (
     <form>
       <input
@@ -24,9 +25,16 @@ const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
         type="text"
         className="todo-input"
       />
-      <button onClick={submitTodoHandler} className="todo-button" type="submit">
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={submitTodoHandler}
+        className="todo-button"
+        type="submit"
+      >
+        {" "}
         <i className="fas fa-plus-square"></i>
-      </button>
+      </motion.button>
       <div className="select">
         <select onChange={statusHandler} name="todos" className="filter-todo">
           <option value="all">All</option>

@@ -1,10 +1,16 @@
 import React from "react";
 import Todo from "./Todo";
+import { motion } from "framer-motion";
 
 const TodoList = ({ todos, setTodos, filteredTodos }) => {
   console.log(filteredTodos);
   return (
-    <div className="todo-container">
+    <motion.div
+      initial={{ x: "100vw" }}
+      animate={{ x: 0 }}
+      transition={{ type: "spring", delay: 0.8 }}
+      className="todo-container"
+    >
       <ul className="todo-list">
         {filteredTodos.map((todo) => (
           <Todo
@@ -16,7 +22,7 @@ const TodoList = ({ todos, setTodos, filteredTodos }) => {
           />
         ))}
       </ul>
-    </div>
+    </motion.div>
   );
 };
 export default TodoList;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { motion } from "framer-motion";
 // import CSS
 import "./App.css";
 
@@ -57,9 +57,13 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <motion.header
+        initial={{ y: -250 }}
+        animate={{ y: -10 }}
+        transition={{ delay: 0.2, type: "spring", stiffness: 120 }}
+      >
         <h1>Daily Todo List</h1>
-      </header>
+      </motion.header>
       <Form // CALLING PROPS
         inputText={inputText}
         setInputText={setInputText}
